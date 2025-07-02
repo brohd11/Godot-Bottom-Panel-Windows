@@ -2,9 +2,8 @@
 
 Tested on 4.4.1, if it doesn't work for your version let me know.
 
-Adds a make floating button to some of the bottom panels.
+Adds a make floating button to some of the bottom panels, as well as a docking option with persistence between sessions.
 
 Some of them throw errors, but Ouput, Audio, TileMap, GridMap seem to work ok.
 
-https://github.com/user-attachments/assets/fce8a1c2-eac2-4248-94b7-e1746c12b95b
-
+https://github.com/user-attachments/assets/990a1e79-90ab-4fe7-959d-5c2bbbdd058b
