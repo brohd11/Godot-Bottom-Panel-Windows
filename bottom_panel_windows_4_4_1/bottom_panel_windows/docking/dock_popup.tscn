@@ -1,0 +1,187 @@
+[gd_scene load_steps=7 format=3 uid="uid://dugf2bu2pymuw"]
+
+[ext_resource type="Script" uid="uid://gddxjw4kre7v" path="res://addons/bottom_panel_windows/docking/dock_popup.gd" id="1_w7uo3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44s5o"]
+bg_color = Color(0, 0, 0, 0.282353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhsqt"]
+bg_color = Color(1, 1, 1, 0.882353)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w7uo3"]
+bg_color = Color(1, 1, 1, 0.490196)
+
+[sub_resource type="Image" id="Image_w7uo3"]
+data = {
+"data": PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 114, 224, 224, 224, 243, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 242, 224, 224, 224, 112, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 243, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 242, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 145, 145, 145, 116, 145, 145, 145, 243, 145, 145, 145, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 145, 145, 145, 243, 145, 145, 145, 255, 145, 145, 145, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 0, 0, 0, 0, 0, 0, 0, 0, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 219, 219, 219, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 241, 0, 0, 0, 0, 0, 0, 0, 0, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 179, 179, 179, 255, 219, 219, 219, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 241, 225, 225, 225, 109, 0, 0, 0, 0, 0, 0, 0, 0, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 145, 145, 145, 243, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 243, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 144, 144, 144, 115, 145, 145, 145, 243, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 255, 145, 145, 145, 243, 144, 144, 144, 113, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_44s5o"]
+image = SubResource("Image_w7uo3")
+
+[node name="DockPopup" type="PopupPanel"]
+size = Vector2i(160, 128)
+visible = true
+script = ExtResource("1_w7uo3")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LeftLeft" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LeftUL" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/LeftLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/disabled = SubResource("StyleBoxFlat_44s5o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qhsqt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7uo3")
+
+[node name="LeftBL" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/LeftLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/disabled = SubResource("StyleBoxFlat_44s5o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qhsqt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7uo3")
+
+[node name="LeftRight" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LeftUR" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/LeftRight"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/disabled = SubResource("StyleBoxFlat_44s5o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qhsqt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7uo3")
+
+[node name="LeftBR" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/LeftRight"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/disabled = SubResource("StyleBoxFlat_44s5o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qhsqt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7uo3")
+
+[node name="Center" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="MainScreen" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/Center"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/disabled = SubResource("StyleBoxFlat_44s5o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qhsqt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7uo3")
+
+[node name="BottomPanel" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/Center"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/disabled = SubResource("StyleBoxFlat_44s5o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qhsqt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7uo3")
+
+[node name="RightLeft" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightUL" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/RightLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/disabled = SubResource("StyleBoxFlat_44s5o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qhsqt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7uo3")
+
+[node name="RightBL" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/RightLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/disabled = SubResource("StyleBoxFlat_44s5o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qhsqt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7uo3")
+
+[node name="RightRight" type="VBoxContainer" parent="Control/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightUR" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/RightRight"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/disabled = SubResource("StyleBoxFlat_44s5o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qhsqt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7uo3")
+
+[node name="RightBR" type="Button" parent="Control/MarginContainer/VBoxContainer/HBoxContainer/RightRight"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/disabled = SubResource("StyleBoxFlat_44s5o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qhsqt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_w7uo3")
+
+[node name="MakeFloatingButton" type="Button" parent="Control/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+text = "Make Floating"
+icon = SubResource("ImageTexture_44s5o")
