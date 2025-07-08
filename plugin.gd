@@ -2,14 +2,16 @@
 extends EditorPlugin
 
 const LAYOUT_FILE = "res://addons/bottom_panel_windows/config/layout.json"
-
-const Utils = preload("uid://dq7iu3k1baeuu") #>import utils.gd
 const DOCKING_MANAGER = preload("uid://b1bk6fs0vs68d") # docking_manager.gd
 const ControlData = DOCKING_MANAGER.ControlData
-const BottomPanel = preload("uid://k31vw0igra2p") #>import bottom_panel.gd
+
+const Utils = preload("uid://fyxjpywx3oml") #>import utils.gd
+const EditorNodes = preload("uid://bcwlh7el7hhbs") #>import editor_nodes.gd
 const Buttons = preload("uid://d34qsa4mbfpwc") #>import bottom_panel_buttons.gd
-const Docks = preload("uid://c2jrte1t34vo") #>import docks.gd
-const DOCK_POPUP = preload("uid://dugf2bu2pymuw") #>import dock_popup.tscn
+const BottomPanel = EditorNodes.BottomPanel #>remote
+const Docks = EditorNodes.Docks #>remote
+const DockPopupHandler = Utils.DockPopupHandler #>remote
+
 
 var DockingManager:DOCKING_MANAGER #>class_inst
 
@@ -20,10 +22,10 @@ func _enter_tree() -> void:
 	Buttons.add_buttons(self)
 	
 	if not FileAccess.file_exists(LAYOUT_FILE):
-		Utils.write_to_json({}, LAYOUT_FILE)
+		Utils.UFile.write_to_json({}, LAYOUT_FILE)
 	else:
 		await get_tree().process_frame
-		var layout_data = Utils.read_from_json(LAYOUT_FILE)
+		var layout_data = Utils.UFile.read_from_json(LAYOUT_FILE)
 		for control_pair in layout_data:
 			var saved_control_data = layout_data.get(control_pair)
 			control_pair = int(control_pair)
@@ -82,7 +84,7 @@ func _save_layout():
 		control_data[ControlData.current_dock_index] = current_dock_index
 		DockingManager.tracked_control_data[control_pair] = control_data
 	
-	Utils.write_to_json(DockingManager.tracked_control_data, LAYOUT_FILE)
+	Utils.UFile.write_to_json(DockingManager.tracked_control_data, LAYOUT_FILE)
 
 func get_control_data(control_pair:int, float_button:DOCKING_MANAGER.FloatButton) -> void:
 	var bottom_panel = BottomPanel.get_bottom_panel()
@@ -108,22 +110,13 @@ func _open_dock_popup(control_pair:int, float_button:DOCKING_MANAGER.FloatButton
 	var control_data = DockingManager.tracked_control_data.get(control_pair)
 	var current_dock = control_data.get(ControlData.current_dock)
 	await get_tree().process_frame
-	var dock_popup:PopupPanel = DOCK_POPUP.instantiate()
-	float_button.add_child(dock_popup)
-	var window = float_button.get_window()
-	if window != EditorInterface.get_base_control().get_window():
-		dock_popup.hide_make_floating()
+	var dock_popup_handler:DockPopupHandler = DockPopupHandler.new(float_button)
+	dock_popup_handler.disable_main_screen()
 	
-	dock_popup.disable_main_screen()
-	dock_popup.position = DisplayServer.mouse_get_position() - (dock_popup.size / 2)
-	if window.current_screen == 0:
-		dock_popup.popup()
-	
-	var handled = await dock_popup.handled
+	var handled = await dock_popup_handler.handled
 	if handled is String:
 		return
 	if handled == current_dock:
-		print("CURRRENT")
 		var home = control_data.get(ControlData.home)
 		if home == current_dock:
 			DockingManager.tracked_control_data.erase(control_pair)

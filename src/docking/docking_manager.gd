@@ -1,9 +1,10 @@
 @tool
 extends RefCounted
 
-const Docks = preload("uid://c2jrte1t34vo") #>import docks.gd
-const MainScreen = preload("uid://bt716u3s7bxbu") #>import main_screen.gd
-const BottomPanel = preload("uid://k31vw0igra2p") #>import bottom_panel.gd
+const EditorNodes = preload("uid://bcwlh7el7hhbs") #>import editor_nodes.gd
+const BottomPanel = EditorNodes.BottomPanel #>remote
+const Docks = EditorNodes.Docks #>remote
+const MainScreen = EditorNodes.MainScreen #>remote
 
 var plugin:EditorPlugin
 
@@ -146,30 +147,9 @@ static func get_current_dock(control):
 		print("Parent is null.")
 		return
 	if parent is DockWrapper:
-		parent = parent.get_parent()
-	
-	if parent == Docks.get_left_ul():
-		return EditorPlugin.DockSlot.DOCK_SLOT_LEFT_UL
-	elif parent == Docks.get_left_bl():
-		return EditorPlugin.DockSlot.DOCK_SLOT_LEFT_BL
-	elif parent == Docks.get_left_ur():
-		return EditorPlugin.DockSlot.DOCK_SLOT_LEFT_UR
-	elif parent == Docks.get_left_br():
-		return EditorPlugin.DockSlot.DOCK_SLOT_LEFT_BR
-	elif parent == Docks.get_right_ul():
-		return EditorPlugin.DockSlot.DOCK_SLOT_RIGHT_UL
-	elif parent == Docks.get_right_bl():
-		return EditorPlugin.DockSlot.DOCK_SLOT_RIGHT_BL
-	elif parent == Docks.get_right_ur():
-		return EditorPlugin.DockSlot.DOCK_SLOT_RIGHT_UR
-	elif parent == Docks.get_right_br():
-		return EditorPlugin.DockSlot.DOCK_SLOT_RIGHT_BR
-	elif parent == BottomPanel.get_bottom_panel():
-		return -2
-	elif parent == MainScreen.get_main_screen():
-		return -1
-	else:
-		return -3
+		control = parent
+	return Docks.get_current_dock(control)
+
 
 static func get_current_dock_control(control):
 	var parent = control.get_parent()
@@ -178,12 +158,7 @@ static func get_current_dock_control(control):
 		return
 	if parent is DockWrapper:
 		return parent.get_parent()
-	elif parent is TabContainer:
-		return parent
-	elif parent == BottomPanel.get_bottom_panel():
-		return parent
-	elif parent == MainScreen.get_main_screen():
-		return parent
+	return Docks.get_current_dock_control(control)
 
 
 class PanelWindow extends Window: #>class

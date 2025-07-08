@@ -2,7 +2,8 @@
 extends RefCounted
 
 const DOCKING_MANAGER = preload("uid://b1bk6fs0vs68d") #>import docking_manager.gd
-const BottomPanel = preload("uid://k31vw0igra2p") #>import bottom_panel.gd
+const EditorNodes = preload("uid://bcwlh7el7hhbs") #>import editor_nodes.gd
+const BottomPanel = EditorNodes.BottomPanel #>remote
 
 static var control_pairs = [
 	["TileMapLayerEditor","TileMap", tile_map],
