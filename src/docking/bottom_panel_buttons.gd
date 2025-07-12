@@ -1,8 +1,8 @@
 @tool
 extends RefCounted
 
-const DOCKING_MANAGER = preload("uid://b1bk6fs0vs68d") #>import docking_manager.gd
-const EditorNodes = preload("uid://bcwlh7el7hhbs") #>import editor_nodes.gd
+const DOCKING_MANAGER = preload("res://addons/bottom_panel_windows/src/docking/docking_manager.gd") #>import docking_manager.gd
+const EditorNodes = preload("res://addons/bottom_panel_windows/src/editor_nodes.gd") #>import editor_nodes.gd
 const BottomPanel = EditorNodes.BottomPanel #>remote
 
 static var control_pairs = [
@@ -87,7 +87,7 @@ static func _toggle_button(plugin, remove, button_target, control_pair, move_to_
 		return
 	var float_button = DOCKING_MANAGER.FloatButton.new()
 	button_target.add_child(float_button)
-	float_button.menu_button.pressed.connect(plugin._open_dock_popup.bind(control_pair, float_button))
+	float_button.button.pressed.connect(plugin._open_dock_popup.bind(control_pair, float_button))
 	if move_to_front:
 		button_target.move_child(float_button, 0)
 	float_buttons[control_pair] = float_button

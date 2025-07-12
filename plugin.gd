@@ -98,7 +98,6 @@ func get_control_data(control_pair:int, float_button:DOCKING_MANAGER.FloatButton
 		ControlData.button: editor_button,
 		ControlData.popup_button: float_button,
 		ControlData.current_dock: -2,
-		#ControlData.last_visibility: true,
 	}
 	
 	DockingManager.tracked_control_data[control_pair] = control_data
@@ -121,11 +120,7 @@ func _open_dock_popup(control_pair:int, float_button:DOCKING_MANAGER.FloatButton
 		if home == current_dock:
 			DockingManager.tracked_control_data.erase(control_pair)
 		return
-	if handled == -3 or handled > -1:
-		pass
-		#var button = control_data.get(ControlData.button)
-		#button.toggled.emit(false) # move this?
-		#button.hide() # move this?
+	
 	if handled == -3:
 		DockingManager.undock_instance(control_pair)
 		return
