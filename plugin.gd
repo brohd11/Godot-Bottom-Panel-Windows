@@ -1,31 +1,33 @@
 @tool
 extends EditorPlugin
 
-const LAYOUT_FILE = "res://addons/bottom_panel_windows/config/layout.json"
-const DOCKING_MANAGER = preload("uid://b1bk6fs0vs68d") # docking_manager.gd
+#const LAYOUT_FILE = "res://addons/bottom_panel_windows/config/layout.json"
+const DOCKING_MANAGER = preload("uid://b1bk6fs0vs68d") # bottom_panel_docking_manager.gd
 const ControlData = DOCKING_MANAGER.ControlData
 
-const Utils = preload("uid://fyxjpywx3oml") #>import utils.gd
-const EditorNodes = preload("uid://bcwlh7el7hhbs") #>import editor_nodes.gd
+const Utils = preload("uid://fyxjpywx3oml") # bottom_panel_utils.gd
+const EditorNodes = preload("uid://bcwlh7el7hhbs") # bottom_panel_editor_nodes.gd
 const Buttons = preload("uid://d34qsa4mbfpwc") #>import bottom_panel_buttons.gd
 const BottomPanel = EditorNodes.BottomPanel #>remote
 const Docks = EditorNodes.Docks #>remote
 const DockPopupHandler = Utils.DockPopupHandler #>remote
 
-
+var layout_file_path:String = ""
 var DockingManager:DOCKING_MANAGER #>class_inst
 
 var _init_flag := false
 
 func _enter_tree() -> void:
+	layout_file_path = _get_layout_file_path()
+	
 	DockingManager = DOCKING_MANAGER.new(self)
 	Buttons.add_buttons(self)
 	
-	if not FileAccess.file_exists(LAYOUT_FILE):
-		Utils.UFile.write_to_json({}, LAYOUT_FILE)
+	if not FileAccess.file_exists(layout_file_path):
+		Utils.UFile.write_to_json({}, layout_file_path)
 	else:
 		await get_tree().process_frame
-		var layout_data = Utils.UFile.read_from_json(LAYOUT_FILE)
+		var layout_data = Utils.UFile.read_from_json(layout_file_path)
 		for control_pair in layout_data:
 			var saved_control_data = layout_data.get(control_pair)
 			control_pair = int(control_pair)
@@ -50,7 +52,15 @@ func _enter_tree() -> void:
 				current_dock_index = dock.get_tab_count() - 1
 			dock.move_child(dock_wrapper, current_dock_index)
 	
+	Buttons.set_bottom_panel_icons()
 	_init_flag = true
+
+func _get_layout_file_path():
+	var dir = get_script().resource_path.get_base_dir()
+	var layout_path = dir.path_join(".bottom_panel_windows/layout.json")
+	if not DirAccess.dir_exists_absolute(layout_path.get_base_dir()):
+		DirAccess.make_dir_recursive_absolute(layout_path.get_base_dir())
+	return layout_path
 
 
 func _exit_tree() -> void:
@@ -58,6 +68,8 @@ func _exit_tree() -> void:
 	DockingManager.return_controls()
 	DockingManager = null
 	Buttons.remove_buttons(self)
+	
+	Buttons.set_bottom_panel_icons(true)
 
 
 func _get_window_layout(configuration: ConfigFile) -> void: #TODO, set up save system
@@ -66,6 +78,7 @@ func _get_window_layout(configuration: ConfigFile) -> void: #TODO, set up save s
 	_save_layout()
 
 func _save_layout():
+	layout_file_path = _get_layout_file_path()
 	if not is_instance_valid(DockingManager):
 		return
 	for control_pair in DockingManager.tracked_control_data.keys():
@@ -84,7 +97,7 @@ func _save_layout():
 		control_data[ControlData.current_dock_index] = current_dock_index
 		DockingManager.tracked_control_data[control_pair] = control_data
 	
-	Utils.UFile.write_to_json(DockingManager.tracked_control_data, LAYOUT_FILE)
+	Utils.UFile.write_to_json(DockingManager.tracked_control_data, layout_file_path)
 
 func get_control_data(control_pair:int, float_button:DOCKING_MANAGER.FloatButton) -> void:
 	var bottom_panel = BottomPanel.get_bottom_panel()

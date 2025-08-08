@@ -1,8 +1,8 @@
 @tool
 extends RefCounted
 
-const Utils = preload("res://addons/bottom_panel_windows/src/utils.gd")
-const EditorNodes = preload("res://addons/bottom_panel_windows/src/editor_nodes.gd") # editor_nodes.gd
+const Utils = preload("res://addons/bottom_panel_windows/src/bottom_panel_utils.gd")
+const EditorNodes = preload("res://addons/bottom_panel_windows/src/bottom_panel_editor_nodes.gd") # editor_nodes.gd
 const BottomPanel = EditorNodes.BottomPanel #>remote
 const Docks = EditorNodes.Docks #>remote
 const MainScreen = EditorNodes.MainScreen #>remote

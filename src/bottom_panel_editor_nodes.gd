@@ -1,5 +1,4 @@
 #! remote res://addons/bottom_panel_windows/src/remote/
-extends RefCounted
 
 const BottomPanel = preload("res://addons/addon_lib/brohd/alib_editor/utils/src/editor_nodes/bottom_panel.gd")
 const Docks = preload("res://addons/addon_lib/brohd/alib_editor/utils/src/editor_nodes/docks.gd")

@@ -1,20 +1,20 @@
 @tool
 extends RefCounted
 
-const DOCKING_MANAGER = preload("res://addons/bottom_panel_windows/src/docking/docking_manager.gd") #>import docking_manager.gd
-const EditorNodes = preload("res://addons/bottom_panel_windows/src/editor_nodes.gd") #>import editor_nodes.gd
+const DOCKING_MANAGER = preload("res://addons/bottom_panel_windows/src/docking/bottom_panel_docking_manager.gd") #>import docking_manager.gd
+const EditorNodes = preload("res://addons/bottom_panel_windows/src/bottom_panel_editor_nodes.gd") #>import editor_nodes.gd
 const BottomPanel = EditorNodes.BottomPanel #>remote
 
 static var control_pairs = [
-	["TileMapLayerEditor","TileMap", tile_map],
-	["TileSetEditor", "TileSet", tile_set],
+	["TileMapLayerEditor","TileMap", tile_map, "TileMapLayer"],
+	["TileSetEditor", "TileSet", tile_set, "TileSet"],
 	["EditorLog", "Output", editor_log],
-	["EditorAudioBuses","Audio", audio],
-	#["AnimationPlayerEditor", "Animation", animation], # throws errors
-	["AnimationTreeEditor", "AnimationTree", animation_tree],
-	["SpriteFramesEditor", "SpriteFrames", sprite_frames],
-	["FindInFilesPanel", "Search Results", find_in_files],
-	["GridMapEditor", "GridMap", grid_map]
+	["EditorAudioBuses","Audio", audio, "AudioBusLayout"],
+	#["AnimationPlayerEditor", "Animation", animation, "Animation"], # throws errors
+	["AnimationTreeEditor", "AnimationTree", animation_tree, "AnimationTree"],
+	["SpriteFramesEditor", "SpriteFrames", sprite_frames, "SpriteFrames"],
+	["FindInFilesPanel", "Search Results", find_in_files, "Search"],
+	["GridMapEditor", "GridMap", grid_map, "GridMap"]
 ]
 
 static var float_buttons = {}
@@ -91,3 +91,26 @@ static func _toggle_button(plugin, remove, button_target, control_pair, move_to_
 	if move_to_front:
 		button_target.move_child(float_button, 0)
 	float_buttons[control_pair] = float_button
+
+static func set_bottom_panel_icons(clear=false):
+	return
+	var editor_settings = EditorInterface.get_editor_settings()
+	var icon_setting = editor_settings.get("interface/editor/dock_tab_style")
+	
+	var bottom_panel_hbox = BottomPanel.get_button_hbox()
+	var bottom_buttons = bottom_panel_hbox.get_children()
+	for i in range(control_pairs.size()):
+		var data = control_pairs[i]
+		if data.size() < 4:
+			continue
+		var button_name = data[1]
+		var button_icon = data[3]
+		for button in bottom_buttons:
+			if not button is Button:
+				continue
+			
+			if button.text == button_name:
+				if clear or icon_setting == 0:
+					button.icon = null
+				else:
+					button.icon = EditorInterface.get_editor_theme().get_icon(button_icon, &"EditorIcons")
