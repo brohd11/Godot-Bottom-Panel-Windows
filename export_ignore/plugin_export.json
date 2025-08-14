@@ -1,0 +1,38 @@
+{
+	"export_root": "/home/brohd/Godot/PluginExport",
+	"exports": [
+		{
+			"exclude": {
+				"directories": [
+					"res://addons/bottom_panel_windows/export_ignore"
+				],
+				"file_extensions": [],
+				"files": []
+			},
+			"export_folder": "bottom-panel-windows{{version=bottom_panel_windows}}/bottom_panel_windows",
+			"other_transfers": [],
+			"source": "res://addons/bottom_panel_windows/"
+		}
+	],
+	"options": {
+		"include_import": true,
+		"include_uid": true,
+		"overwrite": true,
+		"parser_settings": {
+			"parse_cs": {
+				"namespace_rename": {
+
+				}
+			},
+			"parse_gd": {
+
+			},
+			"parse_tscn": {
+
+			}
+		}
+	},
+	"plugin_folder": "BottomPanelWindows/BottomPanelWindows{{version=bottom_panel_windows}}",
+	"post_script": "res://addons/bottom_panel_windows/export_ignore/pre_post_export.gd",
+	"pre_script": "res://addons/bottom_panel_windows/export_ignore/pre_post_export.gd"
+}
