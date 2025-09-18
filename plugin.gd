@@ -18,7 +18,10 @@ var _init_flag := false
 
 func _enter_tree() -> void:
 	layout_file_path = _get_layout_file_path()
-	
+	EditorNodeRef.call_on_ready(_setup)
+
+
+func _setup():
 	DockingManager = DOCKING_MANAGER.new(self)
 	Buttons.add_buttons(self)
 	
