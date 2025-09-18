@@ -76,7 +76,7 @@ static func grid_map(plugin, control_pair, remove=false):
 	var buttons_target = grid_map.get_child(1)
 	_toggle_button(plugin, remove, buttons_target, control_pair)
 
-static func _toggle_button(plugin, remove, button_target, control_pair, move_to_front=false):
+static func _toggle_button(plugin, remove, button_target:Control, control_pair, move_to_front=false):
 	for child in button_target.get_children():
 		if child is DOCKING_MANAGER.FloatButton:
 			if remove:
@@ -85,7 +85,7 @@ static func _toggle_button(plugin, remove, button_target, control_pair, move_to_
 			return
 	if remove:
 		return
-	var float_button = DOCKING_MANAGER.FloatButton.new()
+	var float_button = DOCKING_MANAGER.FloatButton.new(control_pairs[control_pair][0])
 	button_target.add_child(float_button)
 	float_button.button.pressed.connect(plugin._open_dock_popup.bind(control_pair, float_button))
 	if move_to_front:

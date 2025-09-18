@@ -7,6 +7,8 @@ const BottomPanel = EditorNodes.BottomPanel #>remote
 const Docks = EditorNodes.Docks #>remote
 const MainScreen = EditorNodes.MainScreen #>remote
 
+const AUTOFOCUS_SETTING = "plugin/bottom_panel_windows/autofocus"
+
 var plugin:EditorPlugin
 
 var tracked_control_data = {}
@@ -73,8 +75,12 @@ func undock_instance(control_pair):
 	var window = PanelWindow.new(control, false)
 	window.close_requested.connect(window_close_requested.bind(control_pair))
 	
-	window.mouse_entered.connect(_on_window_mouse_entered.bind(window))
-	window.mouse_exited.connect(_on_window_mouse_exited)
+	var ed_settings = EditorInterface.get_editor_settings()
+	if not ed_settings.has_setting(AUTOFOCUS_SETTING):
+		ed_settings.set_setting(AUTOFOCUS_SETTING, false)
+	if ed_settings.get_setting(AUTOFOCUS_SETTING):
+		window.mouse_entered.connect(_on_window_mouse_entered.bind(window))
+		window.mouse_exited.connect(_on_window_mouse_exited)
 	
 	return window
 
@@ -156,12 +162,15 @@ static func get_current_dock_control(control):
 	return Docks.get_current_dock_control(control)
 
 
-class PanelWindow extends Utils.PanelWindow: #>class
+class PanelWindow extends Utils.PanelWindow:
 	pass
 
 class FloatButton extends HBoxContainer:
 	var button: Button
-	func _init():
+	func _init(control_pair_str):
+		if control_pair_str == "EditorLog":
+			add_spacer(true)
+		
 		add_theme_constant_override("seperation", 0)
 		button = Button.new()
 		add_child(button)
@@ -170,6 +179,8 @@ class FloatButton extends HBoxContainer:
 		button.flat = true
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.focus_mode = Control.FOCUS_NONE
+		
+		
 
 class DockWrapper extends VBoxContainer: #>class #allows vis to not affect dock tab vis
 	func _init() -> void:

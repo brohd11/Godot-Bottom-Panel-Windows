@@ -1,7 +1,6 @@
 @tool
 extends EditorPlugin
 
-#const LAYOUT_FILE = "res://addons/bottom_panel_windows/config/layout.json"
 const DOCKING_MANAGER = preload("uid://b1bk6fs0vs68d") # bottom_panel_docking_manager.gd
 const ControlData = DOCKING_MANAGER.ControlData
 
