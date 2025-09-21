@@ -102,7 +102,7 @@ func _save_layout():
 	Utils.UFile.write_to_json(DockingManager.tracked_control_data, layout_file_path)
 
 func get_control_data(control_pair:int, float_button:DOCKING_MANAGER.FloatButton) -> void:
-	var bottom_panel = BottomPanel.get_bottom_panel()
+	#var bottom_panel = BottomPanel.get_bottom_panel()
 	var controls = _get_bottom_panel_control(Buttons.control_pairs[control_pair])
 	var editor_panel = controls[0]
 	editor_panel.name = Buttons.control_pairs[control_pair][0]
@@ -145,7 +145,7 @@ func _open_dock_popup(control_pair:int, float_button:DOCKING_MANAGER.FloatButton
 func _get_bottom_panel_control(control_button_names):
 	var control_class = control_button_names[0]
 	var button_name = control_button_names[1]
-	var bottom_panel = BottomPanel.get_bottom_panel()
+	#var bottom_panel = BottomPanel.get_bottom_panel()
 	var control = BottomPanel.get_panel(control_class)
 	if control:
 		var button
